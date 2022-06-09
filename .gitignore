@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+AsyncPractice/Library
+AsyncPractice/Logs
+AsyncPractice/UserSettings

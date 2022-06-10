@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ShapeManager : MonoBehaviour
@@ -8,7 +10,8 @@ public class ShapeManager : MonoBehaviour
     {
         //StartCoroutineTest();
         //StartAsyncTest();
-        StartSequentiallyAsyncTest();
+        //StartSequentiallyAsyncTest();
+        StartWhenAllAsyncTest();
     }
 
     private void StartCoroutineTest()
@@ -33,5 +36,18 @@ public class ShapeManager : MonoBehaviour
         {
             await _shapes[i].RotateForSecondsTaskAsync(i + 1);
         }
+    }
+    
+    private async void StartWhenAllAsyncTest()
+    {
+        var tasks = new Task[_shapes.Length];
+        for (var i = 0; i < _shapes.Length; i++)
+        {
+            tasks[i] = _shapes[i].RotateForSecondsTaskAsync(i + 1);
+        }
+
+        await Task.WhenAll(tasks);
+        
+        Debug.Log("All shapes stopped!");
     }
 }

@@ -1,17 +1,20 @@
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ShapeManager : MonoBehaviour
 {
     [SerializeField] private Shape[] _shapes;
 
-    private void Start()
+    private async void Start()
     {
         //StartCoroutineTest();
         //StartAsyncTest();
         //StartSequentiallyAsyncTest();
         StartWhenAllAsyncTest();
+        var a = await GetRandomNumber();
+        Debug.Log("random number is: " + a);
     }
 
     private void StartCoroutineTest()
@@ -49,5 +52,12 @@ public class ShapeManager : MonoBehaviour
         await Task.WhenAll(tasks);
         
         Debug.Log("All shapes stopped!");
+    }
+
+    private async Task<int> GetRandomNumber()
+    {
+        var randomNumber = Random.Range(500, 1000);
+        await Task.Delay(randomNumber);
+        return randomNumber;
     }
 }

@@ -61,3 +61,6 @@ crashlytics-build.properties
 AsyncPractice/Library
 AsyncPractice/Logs
 AsyncPractice/UserSettings
+AsyncPractice/.idea
+AsyncPractice/obj
+AsyncPractice/Temp
